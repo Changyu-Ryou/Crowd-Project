@@ -8,7 +8,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const config = require('./config/key');
 
-const app = express();
+const app = express(); 
 
 mongoose.connect(config.mongoURI,
   {
