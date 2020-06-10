@@ -77,7 +77,7 @@ function LandingPage() {
             <a href='/idea'><button>기획</button></a>
             <a href='/design'><button>디자인</button></a>
 
-            <Title level={2} > Recommended </Title>
+            <Title level={2} > 전체보기 </Title>
             <hr />
 
             <Row gutter={16}>
