@@ -91,9 +91,9 @@ function DetailPostPage(props) {
                         {/* <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video> */}
 
                     </div>
-                    {/* <div className="commentPage" style={{ width: '100%', padding: '3rem 2em' }}>
+                    <div className="commentPage" style={{ width: '100%', padding: '3rem 2em' }}>
                         <Comments CommentLists={CommentLists} postId={Post._id} refreshFunction={updateComment} />
-                    </div> */}
+                    </div>
                 </Col>
                 <Col lg={6} xs={24}>
                     <div className="postPage" style={{ width: '100%', height: '300px', padding: '3rem 0rem', textAlign: 'center', alignItems: 'center' }}>
@@ -123,9 +123,9 @@ function DetailPostPage(props) {
                         <span> {Post.in ? Post.in : `0`}/{Post.people ? (Post.people + `명`) : `∞명`}</span><br /><br />
                         <List.Item id='like'
                             actions={[
-                            // <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
+                            <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
                             (loginOrNot 
-                                ? (postId.writer._id == localStorage.getItem('userId') 
+                                ? (Post.writer._id == localStorage.getItem('userId') 
                                     ? <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} /> 
                                     : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />)
                                 : <button>로그인해주세요</button>)]}

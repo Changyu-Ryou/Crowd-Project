@@ -1,11 +1,17 @@
 import React from "react";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import moment from "moment";
 import { registerUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 import { Form, Input, Button, Select, Typography } from 'antd';
+import TextArea from "antd/lib/input/TextArea";
+
+
+
 const { Title } = Typography
 const { Option } = Select;
+
 
 const formItemLayout = {
   labelCol: {
@@ -43,7 +49,14 @@ function RegisterPage(props) {
         name: '',
         password: '',
         confirmPassword: '',
-        company: ''
+        company: '',
+        skill:'',
+        skill1:'',
+        skill2:'',
+        skill3:'',
+        skill4:'',
+        git:'',
+        intro:'',
       }}
       validationSchema={Yup.object().shape({
         name: Yup.string()
@@ -56,16 +69,34 @@ function RegisterPage(props) {
           .required('Password is required'),
         confirmPassword: Yup.string()
           .oneOf([Yup.ref('password'), null], 'Passwords must match')
-          .required('Confirm Password is required')
+          .required('Confirm Password is required'),
+        intro: Yup.string()
+        .required('자기소개를 입력해주세요'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
+
+          function addEnter(value){
+            try{
+              var content = value;
+              content = content.replaceAll("\n", "<br/>");
+              return content;
+            }catch{
+              return value;
+            }
+           
+          }
+
           let dataToSubmit = {
             email: values.email,
             password: values.password,
             name: values.name,
             // lastname: values.lastname,
-            image: `uploads/images/no-user.svg`,
+            image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`,
+            git: values.git,
+            intro: addEnter(values.intro),
+            skill: (values.skill && 'C/C++/C# ')+(values.skill1 && 'JAVA ') + (values.skill2 && 'Python ')+(values.skill3 && 'Script ')
+                      +(values.skill4 && '없음')
           };
 
           dispatch(registerUser(dataToSubmit)).then(response => {
@@ -162,6 +193,42 @@ function RegisterPage(props) {
                 {errors.confirmPassword && touched.confirmPassword && (
                   <div className="input-feedback">{errors.confirmPassword}</div>
                 )}
+              </Form.Item>
+
+              <Form.Item label="skill" hasFeedback>
+                <Input id="skill" type="checkbox" value={values.skill} onChange={handleChange}
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>C/C++/C# 
+                <Input id="skill1" type="checkbox" value={values.skill1} onChange={handleChange}
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>JAVA
+                <Input id="skill2" type="checkbox" value={values.skill2} onChange={handleChange}
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>Python <br/> 
+                <Input id="skill3" type="checkbox" value={values.skill3} onChange={handleChange}
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>Script
+                <Input id="skill4" type="checkbox" value={values.skill4} onChange={handleChange}
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>없음<br/>
+              </Form.Item>
+
+              <Form.Item label="GitHub 아이디">
+                <Input
+                  id="git"
+                  placeholder="Enter your gitHub ID"
+                  type="text"
+                  value={values.git}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Form.Item>
+
+              <Form.Item required label="자기소개">
+                <TextArea
+                  id="intro"
+                  placeholder="Introduce yourself"
+                  type="textbox"
+                  value={values.intro}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  style={{width:'100%', height:'100px'}}
+                />
               </Form.Item>
 
 

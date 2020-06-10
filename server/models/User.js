@@ -27,7 +27,16 @@ const userSchema = mongoose.Schema({
     token: String,
     tokenExp: Number,
     resetToken: String,
-    resetTokenExp: Number
+    resetTokenExp: Number,
+    skill :{
+        type: String
+    },
+    git :{
+        type: String
+    },
+    intro : {
+        type: String
+    }
 })
 //role === 1   normal user 
 //role === 0   admin user

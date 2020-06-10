@@ -3,7 +3,7 @@ import axios from 'axios';
 function Subscriber(props) {
     const userTo = props.userTo
     const userFrom = props.userFrom
-    const videoId = props.videoId
+    const postId = props.postId
 
     const [SubscribeNumber, setSubscribeNumber] = useState(0)
     const [Subscribed, setSubscribed] = useState(false)
@@ -13,7 +13,7 @@ function Subscriber(props) {
         let subscribeVariables = {
                 userTo : userTo,
                 userFrom : userFrom,
-                videoId : videoId
+                postId : postId
         }
 
         if(Subscribed) {
@@ -47,8 +47,8 @@ function Subscriber(props) {
 
     useEffect(() => {
 
-        const subscribeNumberVariables = { userTo: userTo, userFrom: userFrom, videoId: videoId }
-        axios.post('/api/subscribe/subscribeNumber', subscribeNumberVariables)
+        const subscribeNumberVariables = { userTo: userTo, userFrom: userFrom, postId: postId }
+        axios.post('http://localhost:5000/api/subscribe/subscribeNumber', subscribeNumberVariables)
             .then(response => {
                 if (response.data.success) {
                     setSubscribeNumber(response.data.subscribeNumber)
@@ -57,7 +57,7 @@ function Subscriber(props) {
                 }
             })
 
-        axios.post('/api/subscribe/subscribed', subscribeNumberVariables)
+        axios.post('http://localhost:5000/api/subscribe/subscribed', subscribeNumberVariables)
             .then(response => {
                 if (response.data.success) {
                     setSubscribed(response.data.subcribed)
