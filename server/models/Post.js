@@ -23,6 +23,18 @@ const postSchema = mongoose.Schema({
     views: {
         type: Number,
         default: 0
+    },
+    filePath : {
+        type: String,
+    },
+    people: {
+        type: Number
+    },
+    startday: {
+        type: Date
+    },
+    daycount: {
+        type: Number
     }
 }, {timestamps: true})
 

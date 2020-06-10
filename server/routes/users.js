@@ -7,6 +7,7 @@ const { auth } = require("../middleware/auth");
 //=================================
 
 router.get("/auth", auth, (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0 ? false : true,
@@ -21,7 +22,7 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     const user = new User(req.body);
     try {
         await user.save()
@@ -34,6 +35,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user)
             return res.json({
@@ -59,6 +61,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", auth, async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     try {
         await User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" })
         return res.status(200).send({

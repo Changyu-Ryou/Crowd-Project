@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './UploadPage.css'
+import Dropzone from 'react-dropzone';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -7,14 +8,11 @@ import {
     Typography,
     Button,
     Form,
-    Input,
+    Input
 } from 'antd';
 import Axios from 'axios';
-import {useSelector} from 'react-redux';
-import {Route} from 'react-router-dom';
-
-const {TextArea} = Input;
-const {Title} = Typography;
+import { useSelector } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 const PrivateOptions = [
     {
@@ -75,7 +73,12 @@ function UploadPage() {
     const [DocTitle, setDocTitle] = useState("")
     const [Description, setDescription] = useState("")
     const [Private, setPrivate] = useState(0)
+    const [FilePath, setFilePath] = useState("")
+
     const [Category, setCategory] = useState("웹 어플리케이션")
+    const [People, setPeople] = useState("")
+    const [StartDay, setStartDay] = useState("")
+    const [DayCount, setDayCount] = useState("")
 
     const onTitleChange = (e) => {
         setDocTitle(e.currentTarget.value)
@@ -93,16 +96,39 @@ function UploadPage() {
     const onCategoryChange = (e) => {
         setCategory(e.currentTarget.value)
     }
+    const handleChangePeople = (event) => {
+        setPeople(event.currentTarget.value)
+    }
+    const handleChangeStartDay = (event) => {
+        setStartDay(event.currentTarget.value)
+    }
+    const handleChangeDayCount = (event) => {
+        setDayCount(event.currentTarget.value)
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (user.userData && !user.userData.isAuth) {
+            return alert('Please Log in First')
+        }
+
+        if (DocTitle === "" || Description === "" ||
+            Category === "" || FilePath === "" ||
+            People === "" || StartDay === "" || DayCount == "" ||Private==="") {
+            return alert('Please first fill all the fields')
+        }
 
         const variables = {
             writer: user.userData._id,
             title: DocTitle,
             description: Description,
             privacy: Private,
-            category: Category
+            category: Category,
+            filePath: FilePath,
+            people: People,
+            startday: StartDay,
+            daycount: DayCount
         }
 
         if (DocTitle !== "") {
@@ -128,17 +154,48 @@ function UploadPage() {
 
     }
 
+
+    const onDrop = (files) => {
+
+        let formData = new FormData();
+        const config = {
+            header: { 'content-type': 'multipart/form-data' }
+        }
+        console.log('file=',files)
+        formData.append("file", files[0])
+
+        Axios.post('http://localhost:5000/api/post/uploadfiles', formData, config)
+            .then(response => {
+                if (response.data.success) {
+
+                    let variable = {
+                        filePath: response.data.filePath,
+                        fileName: response.data.fileName
+                    }
+                    setFilePath(response.data.filePath)
+
+                } else {
+                    alert('failed to save the video in server');
+                    console.log('res=',response.data);
+                }
+            })
+
+    }
+
     return (
         <div style={{
-                margin: '1rem auto'
-            }}>
-            <dev
+            margin: '1rem auto'
+        }}>
+            <div
                 style={{
                     textAlign: 'left',
                     marginBottom: '1rem'
                 }}>
 
                 <Form onSubmit={onSubmit}>
+                   
+
+
                     <text id='category_them'>카테고리</text>
                     <select onChange={onCategoryChange} id='category_select'>
                         {
@@ -157,7 +214,7 @@ function UploadPage() {
                                 onChange={onTitleChange}
                                 value={DocTitle}
                                 placeholder='제목'
-                                id='title_txt'/>
+                                id='title_txt' />
                         </div>
 
                         <ReactQuill id='.ql-editor'
@@ -213,11 +270,11 @@ function UploadPage() {
                                     ]
                                 ],
                                 syntax: true
-                            }}/>
+                            }} />
 
                     </div>
 
-                    <br/>
+                    <br />
                     <text>프로젝트 공개여부 </text>
 
                     <select onChange={onPrivateChange}>
@@ -227,16 +284,74 @@ function UploadPage() {
                             )
                         }
                     </select>
+                    <br /><br />
 
-                    <br/>
-                    <br/>
+                    <label><b>프로젝트 정원</b></label><br />
+                <Input style={{ width: '30%' }}
+                    type="number"
+                    onChange={handleChangePeople}
+                    value={People}
+                    min="2"
+                /> <span> 명</span>
+                <br /><br />
 
-                    <br/>
-                    <br/>
-                    
+                <div style={{ height: '50px' }}>
+
+                    <div style={{ width: '50%', display: 'inline-block' }}>
+                        <label><b>프로젝트 예상 시작일</b></label><br/>
+                        <Input style={{ width:'90%' }}
+                            type='date'
+                            onChange={handleChangeStartDay}
+                            value={StartDay}
+                        />
+                    </div>
+
+
+                    <div style={{ width: '50%',  display: 'inline-block' }}>
+                        <label><b>프로젝트 예상 진행 기간</b></label><br/>
+                        <Input style={{ width:'35%'}}
+                            type='number'
+                            onChange={handleChangeDayCount}
+                            value={DayCount}
+                            min="1"
+                        /> 일
+                    </div>
+                </div>
+                <br/><br/><br/>
+
+                    <h3>대표 이미지 선택</h3>
+                <div style={{ display: 'flex', justifyContent: 'end' }}>
+                    <Dropzone
+                        onDrop={onDrop}
+                        multiple={false}
+                        maxSize={800000000}>
+                        {({ getRootProps, getInputProps }) => (
+                            <div style={{ width: '100px', height: '100px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                {...getRootProps()}
+                            >
+                                <input {...getInputProps()} />
+                                {/* <Icon type="plus" style={{ fontSize: '3rem' }} /> */}
+
+                            </div>
+                        )}
+                    </Dropzone>
+
+                    {FilePath !== "" &&
+                        <div >
+                            <img style={{ marginLeft:'20px', width: '100px', height: 'auto', resize:"both", float:"left"}} src={`http://localhost:5000/${FilePath}`} alt="haha" />
+                        </div>
+                    }
+                </div>
+
+                    <br />
+                    <br />
+
+                    <br />
+                    <br />
+
 
                 </Form>
-            </dev>
+            </div>
         </div>
     )
 }
