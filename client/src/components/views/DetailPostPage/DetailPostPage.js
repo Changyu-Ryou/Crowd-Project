@@ -15,14 +15,14 @@ function DetailPostPage(props) {
 
 
     const user = useSelector(state => state.user)
-    var loginOrNot =0;
+    var loginOrNot = 0;
 
-    if(user.userData && user.userData.isAuth){
-        loginOrNot=1
+    if (user.userData && user.userData.isAuth) {
+        loginOrNot = 1
         //console.log("userdata="+user.userData+" "+user.userData.isAuth)
-    } 
+    }
 
-   
+
 
     const postVariable = {
         postId: postId
@@ -77,16 +77,16 @@ function DetailPostPage(props) {
         return (
             <Row>
                 <div id="thumb_main" style={{ position: 'relative', width: '100%', height: '400px', textAlign: 'left', overflow: 'hidden' }}>
-                    <img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(50%)' }} 
-                                src={`http://localhost:5000/${Post.filePath}`} />
-                                {/* localhost */}
+                    <img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(50%)' }}
+                        src={`http://localhost:5000/${Post.filePath}`} />
+                    {/* localhost */}
                     <label id="proj_title">{Post.title}</label>
                 </div>
 
                 <Col lg={18} xs={24}>
-                    <div className="postPage" style={{ width: '100%', padding: '3rem 4em', minHeight: '150px' }}>
+                    <div className="postPage" style={{ width: '100%', padding: '3rem 4em', minHeight: '150px' ,whiteSpace:"normal", wordBreak:'normal'}}>
                         <h2>프로젝트 소개</h2>
-                        <div dangerouslySetInnerHTML={ {__html: Post.description} }></div>
+                        <div dangerouslySetInnerHTML={{ __html: Post.description }} style={{width:'100%',whiteSpace:"normal", wordBreak:'normal'}}></div>
                         {/* <p>{Post.description}</p> */}
                         {/* <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video> */}
 
@@ -121,15 +121,17 @@ function DetailPostPage(props) {
                             <div className='bar' name='bar' id="bar" style={{ float: 'left', width: `${person}`, height: '10px', display: 'inline', border: '1px solid gray', borderRadius: '10px 10px', background: 'red' }}></div>
                         </div>
                         <span> {Post.in ? Post.in : `0`}/{Post.people ? (Post.people + `명`) : `∞명`}</span><br /><br />
-                        <List.Item id='like'
-                            actions={[
-                            <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
-                            (loginOrNot 
-                                ? (Post.writer._id == localStorage.getItem('userId') 
-                                    ? <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} /> 
-                                    : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />)
-                                : <button>로그인해주세요</button>)]}
-                        />
+                        <div style={{width:'100%', height:'auto', textAlign:'center'}}>
+                            <List.Item id='like' style={{justifyContent:'center'}}
+                                actions={[
+                                    // <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
+                                    (loginOrNot
+                                        ? (Post.writer._id == localStorage.getItem('userId')
+                                            ? <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />
+                                            : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />)
+                                        : <button>로그인해주세요</button>)]}
+                            />
+                        </div>
 
 
                     </div>

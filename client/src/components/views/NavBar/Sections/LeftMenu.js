@@ -10,6 +10,9 @@ function LeftMenu(props) {
       <Menu.Item key="mail">
         <a href="/">Home</a>
       </Menu.Item>
+      <Menu.Item key="applied">
+        <a href="/AppliedProjectPage">지원한 프로젝트</a>
+      </Menu.Item>
       <SubMenu title={<span>Blogs</span>}>
         <MenuItemGroup title="Item 1">
           <Menu.Item key="setting:1">Option 1</Menu.Item>

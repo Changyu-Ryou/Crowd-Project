@@ -13,6 +13,7 @@ import LandingGamePage from "./views/LandingPage/Category/LandingGamePage.js";
 import LandingNormalPage from "./views/LandingPage/Category/LandingNormalPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
+import AppliedProjectPage from "./views/AppliedProjectPage/AppliedProjectPage.js";
 
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
@@ -37,6 +38,9 @@ function App() {
             <Route exact path="/mfc" component={Auth(LandingMFCPage, null)} />
             <Route exact path="/game" component={Auth(LandingGamePage, null)} />
             <Route exact path="/normal" component={Auth(LandingNormalPage, null)} />
+
+            <Route exact path="/AppliedProjectPage" component={Auth(AppliedProjectPage, null)} />
+
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/upload" component={Auth(UploadPage, true)} />

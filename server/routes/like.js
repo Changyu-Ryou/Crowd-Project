@@ -13,7 +13,7 @@ router.post("/getLikes", (req, res) => {
 
     let variable = {}
     if (req.body.postId) {
-        variable = { videoId: req.body.postId }
+        variable = { postId: req.body.postId }
     } else {
         variable = { commentId: req.body.commentId }
     }
@@ -32,7 +32,7 @@ router.post("/getDislikes", (req, res) => {
 
     let variable = {}
     if (req.body.postId) {
-        variable = { videoId: req.body.postId }
+        variable = { postId: req.body.postId }
     } else {
         variable = { commentId: req.body.commentId }
     }
@@ -75,8 +75,8 @@ router.post("/upLike", (req, res) => {
 router.post("/unLike", (req, res) => {
 
     let variable = {}
-    if (req.body.videoId) {
-        variable = { videoId: req.body.postId, userId: req.body.userId }
+    if (req.body.postId) {
+        variable = { postId: req.body.postId, userId: req.body.userId }
     } else {
         variable = { commentId: req.body.commentId , userId: req.body.userId }
     }
@@ -94,7 +94,7 @@ router.post("/unDisLike", (req, res) => {
 
     let variable = {}
     if (req.body.postId) {
-        variable = { videoId: req.body.postId, userId: req.body.userId }
+        variable = { postId: req.body.postId, userId: req.body.userId }
     } else {
         variable = { commentId: req.body.commentId , userId: req.body.userId }
     }
@@ -113,8 +113,8 @@ router.post("/unDisLike", (req, res) => {
 router.post("/upDisLike", (req, res) => {
 
     let variable = {}
-    if (req.body.videoId) {
-        variable = { videoId: req.body.postId, userId: req.body.userId }
+    if (req.body.postId) {
+        variable = { postId: req.body.postId, userId: req.body.userId }
     } else {
         variable = { commentId: req.body.commentId , userId: req.body.userId }
     }
