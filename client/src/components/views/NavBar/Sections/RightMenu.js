@@ -7,7 +7,7 @@ import { logoutUser } from '../../../../_actions/user_actions';
 function RightMenu(props) {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
-
+ 
   const logoutHandler = () => {
 
     dispatch(logoutUser())
@@ -34,7 +34,7 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item style={{ background:"white", border:'0px solid white',color:'black'}}key="name">
-          <p style={{marginBottom:'1px', marginRight:'5px'}}>{(user.userData ? `안녕하세요, ${user.userData.name}님` : ' ')}</p>
+          <p style={{marginBottom:'1px', marginRight:'5px'}}>{(user.userData ? `안녕하세요, ${user.userData.name} 님` : ' ')}</p>
         </Menu.Item>
         <Menu.Item key="upload">
           <a href="/upload">Upload</a>

@@ -44,9 +44,9 @@ function LandingAndPage() {
             return peo;
         }
         return <Col lg={6} md={8} xs={24} style={{ marginBottom: '30px' }}>
-            <div style={{ position: 'relative', margin: '0px 15px', height: '150px', overflow:'hidden'}}>
+            <div style={{ position: 'relative', margin: '0px 15px', height: '150px', overflow:'hidden', border:'1px solid rgba(0,0,0,.2)', borderRadius:'10px 10px'}}>
                 <a href={`/post/${posts._id}`} >
-                    <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
+                    <img style={{ width: '100%'}} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
                     
                 </a>
             </div><br />
@@ -74,7 +74,7 @@ function LandingAndPage() {
 
     return (<div style={{width:'100%', overflow:'hidden'}}>
         <img id='landingImg' src="https://cdn.wadiz.kr/ft/images/green001/2020/0605/20200605142924749_2233.jpg/wadiz/optimize/" ></img>
-        <div id='renderZone'style={{ width: '85%', margin: '3rem auto' }}>
+        <div id='renderZone'style={{ width: '85%', margin: '3rem auto', }}>
 
             <a href='/'><button>전체보기</button></a>
             <a href='/web'><button>웹 App</button></a>
@@ -84,7 +84,7 @@ function LandingAndPage() {
             <a href='/game'><button>Game</button></a>
             <a href='/normal'><button>일반/기타</button></a>
 
-            <Title level={2} > Android 프로젝트 </Title>
+            <Title level={2} style={{marginTop:'2rem'}}> Android 프로젝트 </Title>
             <hr />
 
             <Row gutter={16}>

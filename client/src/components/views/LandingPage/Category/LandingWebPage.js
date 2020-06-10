@@ -43,7 +43,7 @@ function LandingWebPage() {
             return peo;
         }
         return <Col lg={6} md={8} xs={24} style={{ marginBottom: '30px' }}>
-            <div style={{ position: 'relative', margin: '0px 15px', height: '150px', overflow:'hidden'}}>
+            <div style={{ position: 'relative', margin: '0px 15px', height: '150px', overflow:'hidden', border:'1px solid rgba(0,0,0,.2)', borderRadius:'10px 10px'}}>
                 <a href={`/post/${posts._id}`} >
                     <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
                     
@@ -83,7 +83,7 @@ function LandingWebPage() {
             <a href='/game'><button>Game</button></a>
             <a href='/normal'><button>일반/기타</button></a>
 
-            <Title level={2} > 웹 App 프로젝트</Title>
+            <Title level={2} style={{marginTop:'2rem'}}> 웹 App 프로젝트</Title>
             <hr />
 
             <Row gutter={16}>
