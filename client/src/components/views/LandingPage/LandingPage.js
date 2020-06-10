@@ -43,16 +43,7 @@ function LandingPage() {
             <div style={{ position: 'relative', margin: '0px 15px', height: '150px', overflow:'hidden'}}>
                 <a href={`/post/${posts._id}`} >
                     <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
-                    {/* localhost*/}
-                    {/* <div className=" duration"
-                        style={{
-                            bottom: 0, right: 0, position: 'absolute', margin: '4px',
-                            color: '#fff', backgroundColor: 'rgba(17, 17, 17, 0.8)', opacity: 0.8,
-                            padding: '2px 4px', borderRadius: '2px', letterSpacing: '0.5px', fontSize: '12px',
-                            fontWeight: '500', lineHeight: '12px'
-                        }}>
-                        <span>{minutes} : {seconds}</span>
-                    </div> */}
+                    
                 </a>
             </div><br />
             <Meta

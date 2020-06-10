@@ -11,6 +11,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import UploadPage from "./views/UploadPage/UploadPage.js";
+import DetailPostPage from "./views/DetailPostPage/DetailPostPage.js"
 
 //About User
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/upload" component={Auth(UploadPage, true)} />
+            <Route exact path="/post/:postId" component={Auth(DetailPostPage, null)} />
           </div>
           <Route component={Auth(NotFoundPage, null)} />
         </Switch>

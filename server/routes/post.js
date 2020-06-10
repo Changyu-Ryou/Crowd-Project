@@ -56,7 +56,7 @@ router.post('/uploadPost', (req, res) => {
         res.status(200).json({ success: true })
     })
 
-})
+});
 
 
 router.get("/getPosts", (req, res) => {
@@ -70,5 +70,16 @@ router.get("/getPosts", (req, res) => {
         })
 
 });
+
+router.post("/getPost", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+    Post.findOne({ "_id" : req.body.postId })
+    .populate('writer')
+    .exec((err, post) => {
+        if(err) return res.status(400).send(err);
+        res.status(200).json({ success: true, post })
+    })
+});
+
 
 module.exports = router;
