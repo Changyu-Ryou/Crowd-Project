@@ -71,6 +71,19 @@ router.get("/getPosts", (req, res) => {
 
 });
 
+router.post("/categotyGetPost", (req, res) => {             //메인 화면 모든 포스트 보내기
+    res.header("Access-Control-Allow-Origin", "*"); 
+    Post.find({ "category" : req.body.category })
+        .populate('writer')
+        .sort({'createdAt':-1})
+        .exec((err, posts) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, posts })
+        })
+
+});
+
+
 router.post("/getPost", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     Post.findOne({ "_id" : req.body.postId })

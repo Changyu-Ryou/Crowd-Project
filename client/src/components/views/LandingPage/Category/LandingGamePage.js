@@ -6,12 +6,16 @@ import moment from 'moment';
 const { Title } = Typography;
 const { Meta } = Card;
 
-function LandingPage() {
+function LandingGamePage() {
 
     const [Posts, setPosts] = useState([])
 
+    const CategoryVariable = {
+        category: 4
+    }
+
     useEffect(() => {
-        axios.get('http://localhost:5000/api/post/getPosts')
+        axios.post('http://localhost:5000/api/post/categotyGetPost',CategoryVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.posts)
@@ -80,7 +84,7 @@ function LandingPage() {
             <a href='/game'><button>Game</button></a>
             <a href='/normal'><button>일반/기타</button></a>
 
-            <Title level={2} > 전체보기 </Title>
+            <Title level={2} > Game 프로젝트 </Title>
             <hr />
 
             <Row gutter={16}>
@@ -91,4 +95,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default LandingGamePage

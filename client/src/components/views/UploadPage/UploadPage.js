@@ -75,7 +75,7 @@ function UploadPage() {
     const [Private, setPrivate] = useState(0)
     const [FilePath, setFilePath] = useState("")
 
-    const [Category, setCategory] = useState("웹 어플리케이션")
+    const [Category, setCategory] = useState(0)
     const [People, setPeople] = useState("")
     const [StartDay, setStartDay] = useState("")
     const [DayCount, setDayCount] = useState("")

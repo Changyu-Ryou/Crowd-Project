@@ -5,6 +5,12 @@ import Auth from "../hoc/auth";
 
 //About Auth
 import LandingPage from "./views/LandingPage/LandingPage.js";
+import LandingWebPage from "./views/LandingPage/Category/LandingWebPage.js";
+import LandingAndPage from "./views/LandingPage/Category/LandingAndPage.js";
+import LandingiosPage from "./views/LandingPage/Category/LandingiosPage.js";
+import LandingMFCPage from "./views/LandingPage/Category/LandingMFCPage.js";
+import LandingGamePage from "./views/LandingPage/Category/LandingGamePage.js";
+import LandingNormalPage from "./views/LandingPage/Category/LandingNormalPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 
@@ -25,6 +31,12 @@ function App() {
         <Switch>
           <div className="contentsWrap">
             <Route exact path="/" component={Auth(LandingPage, null)} />
+            <Route exact path="/web" component={Auth(LandingWebPage, null)} />
+            <Route exact path="/android" component={Auth(LandingAndPage, null)} />
+            <Route exact path="/ios" component={Auth(LandingiosPage, null)} />
+            <Route exact path="/mfc" component={Auth(LandingMFCPage, null)} />
+            <Route exact path="/game" component={Auth(LandingGamePage, null)} />
+            <Route exact path="/normal" component={Auth(LandingNormalPage, null)} />
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/upload" component={Auth(UploadPage, true)} />
