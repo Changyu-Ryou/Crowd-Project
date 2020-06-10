@@ -1,0 +1,53 @@
+.Write {}
+
+.Write #Title {
+    margin-top: 5px;
+}
+
+#title_txt {
+    align-content: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border: none;
+    font-size: 26px;
+    border-bottom: solid 1px #ababab;
+    font-weight: bold;
+}
+
+#content_txt {
+    width: 100%;
+    font-size: 16px;
+    resize: vertical;
+    border: none;
+    height: 500px;
+}
+
+#image_size {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#category_them {
+    color: dimgray;
+    padding-right: 5px;
+    border-right: solid 1px #ababab;
+}
+
+#category_select {
+    padding-left: 5px;
+    border: none;
+}
+
+
+#content_txt:focus {
+    outline: none;
+}
+
+#title_txt:focus {
+    outline: none;
+}
+
+#button_align {
+    float: right;
+}

@@ -1,0 +1,244 @@
+import React, {useState} from 'react';
+import './UploadPage.css'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+import {
+    Typography,
+    Button,
+    Form,
+    Input,
+} from 'antd';
+import Axios from 'axios';
+import {useSelector} from 'react-redux';
+import {Route} from 'react-router-dom';
+
+const {TextArea} = Input;
+const {Title} = Typography;
+
+const PrivateOptions = [
+    {
+        value: 0,
+        label: "비공개"
+    }, {
+        value: 1,
+        label: "공개"
+    }
+]
+
+const CategoryOptions = [
+    {
+        value: 0,
+        label: "웹 어플리케이션"
+    }, {
+        value: 1,
+        label: "안드로이드 어플리케이션"
+    }, {
+        value: 2,
+        label: "IOS 어플리케이션"
+    }, {
+        value: 3,
+        label: "MFC 프로젝트"
+    }, {
+        value: 4,
+        label: "게임 개발"
+    }, {
+        value: 5,
+        label: "기타"
+    }
+]
+
+const LanguageOptions = [
+    {
+        value: 0,
+        label: "C/C++"
+    }, {
+        value: 1,
+        label: "JAVA"
+    }, {
+        value: 2,
+        label: "C#"
+    }, {
+        value: 3,
+        label: "Python"
+    }, {
+        value: 4,
+        label: "Java Script"
+    }, {
+        value: 5,
+        label: "없음"
+    }
+]
+
+function UploadPage() {
+    const user = useSelector(state => state.user);
+    const [DocTitle, setDocTitle] = useState("")
+    const [Description, setDescription] = useState("")
+    const [Private, setPrivate] = useState(0)
+    const [Category, setCategory] = useState("웹 어플리케이션")
+
+    const onTitleChange = (e) => {
+        setDocTitle(e.currentTarget.value)
+    }
+
+    const onDescriptionChange = (e) => {
+        setDescription(e)
+        console.log(Description)
+    }
+
+    const onPrivateChange = (e) => {
+        setPrivate(e.currentTarget.value)
+    }
+
+    const onCategoryChange = (e) => {
+        setCategory(e.currentTarget.value)
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const variables = {
+            writer: user.userData._id,
+            title: DocTitle,
+            description: Description,
+            privacy: Private,
+            category: Category
+        }
+
+        if (DocTitle !== "") {
+            if (Description !== "") {
+                Axios
+                    .post('http://localhost:5000/api/post/uploadPost', variables)
+                    .then(response => {
+                        if (response.data.success) {
+                            alert('게시물이 등록되었습니다.');
+                            return window
+                                .location
+                                .replace('/')
+                        } else {
+                            alert('문서 업로드 실패')
+                        }
+                    })
+            } else {
+                alert('본문을 입력하세요')
+            }
+        } else {
+            alert('제목을 입력하세요.')
+        }
+
+    }
+
+    return (
+        <div style={{
+                margin: '1rem auto'
+            }}>
+            <dev
+                style={{
+                    textAlign: 'left',
+                    marginBottom: '1rem'
+                }}>
+
+                <Form onSubmit={onSubmit}>
+                    <text id='category_them'>카테고리</text>
+                    <select onChange={onCategoryChange} id='category_select'>
+                        {
+                            CategoryOptions.map(
+                                (item, index) => (<option key={index} value={item.value}>{item.label}</option>)
+                            )
+                        }
+                    </select>
+                    <Button type="primary" size="large" onClick={onSubmit} id='button_align'>
+                        등록
+                    </Button>
+
+                    <div className='Write'>
+                        <div id='Title'>
+                            <Input
+                                onChange={onTitleChange}
+                                value={DocTitle}
+                                placeholder='제목'
+                                id='title_txt'/>
+                        </div>
+
+                        <ReactQuill id='.ql-editor'
+                            //defaultValue={text}
+                            onChange={(text, delta, source, editor) => {
+                                if (source == 'user') {
+                                    // place whatever function you want to execute when user types here:
+                                    onDescriptionChange(editor.getHTML());
+                                }
+                            }} theme="snow" modules={{
+                                toolbar: [
+                                    [
+                                        {
+                                            'font': []
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            'size': ['small', 'normal', 'large', 'huge']
+                                        }
+                                    ],
+                                    [
+                                        'bold', 'italic', 'underline', 'strike'
+                                    ],
+                                    [
+                                        {
+                                            'align': []
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            'list': 'ordered'
+                                        }, {
+                                            'list': 'bullet'
+                                        },
+                                        'blockquote', {
+                                            'direction': 'rtl'
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            'color': []
+                                        }, {
+                                            'background': []
+                                        }, {
+                                            'script': 'sub'
+                                        }, {
+                                            'script': 'super'
+                                        }
+                                    ],
+                                    [
+                                        'image', 'video', 'link'
+                                    ]
+                                ],
+                                syntax: true
+                            }}/>
+
+                    </div>
+
+                    <br/>
+                    <text>프로젝트 공개여부 </text>
+
+                    <select onChange={onPrivateChange}>
+                        {
+                            PrivateOptions.map(
+                                (item, index) => (<option key={index} value={item.value}>{item.label}</option>)
+                            )
+                        }
+                    </select>
+
+                    <br/>
+                    <br/>
+
+                    <br/>
+                    <br/>
+                    
+
+                </Form>
+            </dev>
+        </div>
+    )
+}
+
+export default UploadPage
