@@ -50,7 +50,7 @@ function CheckApply(props) {
                     {console.log(post._id)}
                     <List.Item id='like' style={{ justifyContent: 'center' }}
                         actions={[
-                            <InOrNot userTo={localStorage.getItem('userId')} userFrom={post._id} postId={postId} />]} />
+                            <InOrNot userTo={localStorage.getItem('userId')} userFrom={post._id} postId={postId} fin={post.fin}/>]} />
 
                 </div>
             </div>

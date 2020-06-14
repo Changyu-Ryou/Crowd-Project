@@ -13,7 +13,7 @@ function DetailPostPage(props) {
     const postId = props.match.params.postId
     const [Post, setPost] = useState([])
     const [CommentLists, setCommentLists] = useState([])
-
+    const [Fin, setFin] = useState(0);
 
     const user = useSelector(state => state.user)
     var loginOrNot = 0;
