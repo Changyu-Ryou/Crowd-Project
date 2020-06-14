@@ -24,7 +24,7 @@ function LandingPage() {
             })
     }, [])
 
-
+    
     const renderCards = Posts.map((posts, index) => {
 
         // var minutes = Math.floor(post.duration / 60);
@@ -42,16 +42,18 @@ function LandingPage() {
             peo = peo + '%'
             return peo;
         }
-
-        var today = new Date();
-        var remainDays=posts.startday-today.getTime();
-        console.log(posts.title+ " remaindays "+posts.startday+"   "+today+"   ㄱ듬="+remainDays);
+        var finOrNot = posts.fin;
+        
         
         return <Col lg={6} md={8} xs={24} style={{ marginBottom: '40px' }}>
             <a href={`/post/${posts._id}`} >
             <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow: 'hidden', border: '1px solid rgba(0,0,0,.2)', borderRadius: '10px 10px' }}>
                 
-                    <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
+                   { finOrNot
+                    ?<div style={{ width: '100%',height: '150px',background:'darkgray'}}><img style={{ width: '100%',filter:'brightness(30%)' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
+                    <p style={{position:'absolute', top:"50%",left:'50%',transform:'translate(-50%,-50%)',fontSize:'22px',color:'white',textAlign:'center',fontWeight:'600'}}>마감된<br/>프로젝트</p>
+                    </div>
+                    :<img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />}
 
                    
             </div><br />

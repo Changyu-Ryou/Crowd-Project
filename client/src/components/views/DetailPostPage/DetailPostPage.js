@@ -74,12 +74,19 @@ function DetailPostPage(props) {
             peo = peo + '%'
             return peo;
         }
+        var finOrNot = Post.fin;
 
         return (
             <Row>
                 <div id="thumb_main" style={{ position: 'relative', width: '100%', height: '400px', textAlign: 'left', overflow: 'hidden' }}>
-                    <img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(50%)' }}
-                        src={`http://localhost:5000/${Post.filePath}`} />
+                    {finOrNot 
+                    ? <div><img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(20%)' }}
+                    src={`http://localhost:5000/${Post.filePath}`} />
+                    <p style={{position:'absolute', top:"50%",left:'50%',transform:'translate(-50%,-50%)',fontSize:'22px',color:'white',textAlign:'center',fontWeight:'600'}}>마감된<br/>프로젝트</p>
+                    
+                    </div>
+                    :<img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(60%)' }}
+                        src={`http://localhost:5000/${Post.filePath}`} />}
                     {/* localhost */}
                     <label id="proj_title">{Post.title}</label>
                 </div>

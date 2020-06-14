@@ -27,7 +27,7 @@ function FinApply(props) {
                 if (response.data.success) {
                     //console.log("data2=",response.data);
                     
-                    setFin(response.data.post);
+                    setFin(!Fin);
                     console.log("fin==",response.data.post);
                     //console.log(response.data.success)
                 } else {
@@ -75,7 +75,7 @@ function FinApply(props) {
                     padding: '10px 16px', fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase'
                 }}>
                 {/* {SubscribeNumber}  */}
-                {(Fin == 1) ? '모집이 마감되었습니다' : '모집 마감하기'}
+                {Fin ? '모집이 마감되었습니다' : '모집 마감하기'}
             </button>
         </div>
     )
