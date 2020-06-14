@@ -86,14 +86,15 @@ router.post("/getAppliedPost", (req, res) => {
             //Need to Fetch all of the Videos that belong to the Users that I found in previous step. 
             Post.find({ writer: { $in: subscribedUser }, })
                 .populate('writer')
-                .exec((err, posts) => {
-
-                    Post.find({ _id: { $in: postList }, })
-                        .populate('_id')
-                        .exec((err, posts) => {
-                            if (err) return res.status(400).send(err);
-                            res.status(200).json({ success: true, posts })
-                        })
+                .exec((err, subscribers) => {
+                    if (err) return res.status(400).send(err);
+                    res.status(200).json({ success: true, subscribers })
+                    // Post.find({ _id: { $in: postList }, })
+                    //     .populate('_id')
+                    //     .exec((err, posts) => {
+                    //         if (err) return res.status(400).send(err);
+                    //         res.status(200).json({ success: true, posts })
+                    //     })
                 })
         })
 });
