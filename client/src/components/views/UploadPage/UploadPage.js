@@ -128,7 +128,9 @@ function UploadPage() {
             filePath: FilePath,
             people: People,
             startday: StartDay,
-            daycount: DayCount
+            daycount: DayCount,
+            joinPeople: 0,
+            fin: false
         }
 
         if (DocTitle !== "") {
@@ -176,7 +178,7 @@ function UploadPage() {
 
                 } else {
                     alert('failed to save the video in server');
-                    console.log('res=',response.data);
+                    
                 }
             })
 
@@ -275,7 +277,7 @@ function UploadPage() {
                     </div>
 
                     <br />
-                    <text>프로젝트 공개여부 </text>
+                    {/* <text>프로젝트 공개여부 </text>
 
                     <select onChange={onPrivateChange}>
                         {
@@ -283,7 +285,7 @@ function UploadPage() {
                                 (item, index) => (<option key={index} value={item.value}>{item.label}</option>)
                             )
                         }
-                    </select>
+                    </select> */}
                     <br /><br />
 
                     <label><b>프로젝트 정원</b></label><br />

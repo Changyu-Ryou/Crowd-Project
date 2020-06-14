@@ -4,6 +4,7 @@ import axios from 'axios';
 import Subscriber from './Sections/Subscriber';
 import Comments from './Sections/Comments'
 import LikeDislikes from './Sections/LikeDislikes';
+import CheckApply from './Sections/CheckApply';
 import { useSelector } from "react-redux";
 import { urlencoded } from 'body-parser';
 function DetailPostPage(props) {
@@ -65,8 +66,8 @@ function DetailPostPage(props) {
 
         function getPercent() {
             var peo = 100 / Post.people;
-            if (Post.in) {
-                peo = peo * Post.in
+            if (Post.joinPeople) {
+                peo = peo * Post.joinPeople
             } else {
                 peo = peo * 0
             }
@@ -120,14 +121,14 @@ function DetailPostPage(props) {
                         <div style={{ marginTop: '10px', marginLeft: '23px', width: '50%', height: '10px', display: 'inline-block', border: '1px solid gray', borderRadius: '10px 10px' }}>
                             <div className='bar' name='bar' id="bar" style={{ float: 'left', width: `${person}`, height: '10px', display: 'inline', border: '1px solid gray', borderRadius: '10px 10px', background: 'red' }}></div>
                         </div>
-                        <span> {Post.in ? Post.in : `0`}/{Post.people ? (Post.people + `명`) : `∞명`}</span><br /><br />
+                        <span> {Post.joinPeople ? Post.joinPeople : `0`}/{Post.people ? (Post.people + `명`) : `∞명`}</span><br /><br />
                         <div style={{width:'100%', height:'auto', textAlign:'center'}}>
                             <List.Item id='like' style={{justifyContent:'center'}}
                                 actions={[
                                     // <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
                                     (loginOrNot
                                         ? (Post.writer._id == localStorage.getItem('userId')
-                                            ? <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />
+                                            ? <CheckApply userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />
                                             : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />)
                                         : <button>로그인해주세요</button>)]}
                             />

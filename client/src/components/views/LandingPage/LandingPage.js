@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaCode } from "react-icons/fa";
-import { Card, Avatar, Col, Typography, Row } from 'antd';
+import { Card, Avatar, Col, Typography, Row,Button } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 const { Title } = Typography;
@@ -9,6 +9,8 @@ const { Meta } = Card;
 function LandingPage() {
 
     const [Posts, setPosts] = useState([])
+    var image = 'https://static.wadiz.kr/main/media/img-fundingopen-pc@2x.3311937d.jpg';
+    var mainImg = 'https://cdn.wadiz.kr/ft/images/green001/2020/0605/20200605142924749_2233.jpg/wadiz/optimize/';
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/post/getPosts')
@@ -28,23 +30,30 @@ function LandingPage() {
         // var minutes = Math.floor(post.duration / 60);
         // var seconds = Math.floor(post.duration - minutes * 60);
         var person = getPercent();
+        
 
         function getPercent() {
             var peo = 100 / posts.people;
-            if (posts.in) {
-                peo = peo * posts.in
+            if (posts.joinPeople) {
+                peo = peo * posts.joinPeople
             } else {
                 peo = peo * 0
             }
             peo = peo + '%'
             return peo;
         }
+
+        var today = new Date();
+        var remainDays=posts.startday-today.getTime();
+        console.log(posts.title+ " remaindays "+posts.startday+"   "+today+"   ㄱ듬="+remainDays);
+        
         return <Col lg={6} md={8} xs={24} style={{ marginBottom: '40px' }}>
-            <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow:'hidden', border:'1px solid rgba(0,0,0,.2)', borderRadius:'10px 10px'}}>
-                <a href={`/post/${posts._id}`} >
+            <a href={`/post/${posts._id}`} >
+            <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow: 'hidden', border: '1px solid rgba(0,0,0,.2)', borderRadius: '10px 10px' }}>
+                
                     <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
-                    
-                </a>
+
+                   
             </div><br />
             <Meta
                 avatar={
@@ -60,17 +69,20 @@ function LandingPage() {
             <div style={{ marginTop: '10px', marginLeft: '23px', width: '65%', height: '10px', display: 'inline-block', border: '1px solid gray', borderRadius: '10px 10px', overflow: 'hidden' }}>
                 <div className='bar' name='bar' id="bar" style={{ float: 'left', width: `${person}`, height: '10px', display: 'inline', border: '1px solid gray', borderRadius: '10px 10px', background: 'red' }}></div>
             </div>
-            <span> {posts.in ? posts.in : `0`}/{posts.people ? (posts.people + `명`) : `∞명`}</span>
+            <span> {posts.joinPeople ? posts.joinPeople : `0`}/{posts.people ? (posts.people + `명`) : `∞명`}</span>
             <br />
+            </a>
 
         </Col>
 
     })
 
 
-    return (<div style={{width:'100%', overflow:'hidden'}}>
-        <img id='landingImg' src="https://cdn.wadiz.kr/ft/images/green001/2020/0605/20200605142924749_2233.jpg/wadiz/optimize/" ></img>
-        <div id='renderZone'style={{ width: '85%', margin: '3rem auto' }}>
+    return (<div style={{ width: '100%', overflow: 'hidden' }}>
+        
+        <img id='landingImg' src="https://cdn.wadiz.kr/ft/images/green001/2020/0605/20200605142924749_2233.jpg/wadiz/optimize/" 
+        style={{ textAlign:'center', minHeight:'280px', resize:'both', width:'100%', borderRadius:'10px 10px'}}></img>
+        <div id='renderZone' style={{ width: '85%', margin: '3rem auto' }}>
 
             <a href='/'><button>전체보기</button></a>
             <a href='/web'><button>웹 App</button></a>
@@ -80,14 +92,21 @@ function LandingPage() {
             <a href='/game'><button>Game</button></a>
             <a href='/normal'><button>일반/기타</button></a>
 
-            <Title level={2} style={{marginTop:'2rem'}}> 전체보기 </Title>
+            <Title level={2} style={{ marginTop: '2rem' }}> 전체보기 </Title>
             <hr />
 
             <Row gutter={16}>
                 {renderCards}
             </Row>
         </div>
-        </div>
+
+        <section style={{backgroundImage: `url(${image})`, padding:'60px 0px', textAlign:'center', height:'280px'}}><a href="/upload">
+            <h1 style={{color:'white', fontSize:'32px', margin:'0px'}}>개매칭에서 프로젝트 오픈하기</h1>
+            <p style={{color:'white', fontSize:'15px'}}>당신의 아이디어를 소개하고 개발팀을 꾸려보세요</p>
+            <Button style={{backgroundColor:'#00c4c4', color:'white',height:'56px', fontSize:'21px',padding:'0 32px', border:'0px solid white', borderRadius:'5px 5px'}}>바로가기&nbsp;<i aria-hidden="true"></i></Button>
+        </a>
+        </section>
+    </div>
     )
 }
 

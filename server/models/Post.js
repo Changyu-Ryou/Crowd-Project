@@ -35,6 +35,12 @@ const postSchema = mongoose.Schema({
     },
     daycount: {
         type: Number
+    },
+    joinPeople: {
+        type:Number
+    },
+    fin : {
+        type:Boolean
     }
 }, {timestamps: true})
 

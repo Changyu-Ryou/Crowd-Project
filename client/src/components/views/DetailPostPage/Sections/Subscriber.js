@@ -13,7 +13,8 @@ function Subscriber(props) {
         let subscribeVariables = {
                 userTo : userTo,
                 userFrom : userFrom,
-                postId : postId
+                postId : postId,
+                join: 0
         }
 
         if(Subscribed) {

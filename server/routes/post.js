@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Post } = require("../models/Post");
 const { Subscriber } = require("../models/Subscriber");
+const {User} = require("../models/User");
 const multer = require('multer');
 var ffmpeg = require('fluent-ffmpeg');
 
@@ -97,6 +98,50 @@ router.post("/getAppliedPost", (req, res) => {
         })
 });
 
+
+
+router.post("/getApply", (req, res) => {
+
+
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+    //Need to find all of the Users that I am subscribing to From Subscriber Collection 
+
+    Subscriber.find({ 'postId': req.body.postId })
+        .exec((err, posts) => {
+            if (err) return res.status(400).send(err);
+
+            let subscribedUser = [];
+
+            posts.map((subscriber, i) => {
+                subscribedUser.push(subscriber.userFrom)
+            })
+
+            let postList = [];
+            posts.map((subscriber, i) => {
+                postList.push(subscriber.UserTo)
+            })
+
+
+            //Need to Fetch all of the Videos that belong to the Users that I found in previous step. 
+            User.find({ _id: { $in: subscribedUser }, })
+                
+                .exec((err, posts) => {
+                    if (err) return res.status(400).send(err);
+                    res.status(200).json({ success: true, posts })
+                    
+
+                    // Post.find({ _id: { $in: postList }, })
+                    //     .populate('_id')
+                    //     .exec((err, posts) => {
+                    //         if (err) return res.status(400).send(err);
+                    //         res.status(200).json({ success: true, posts })
+                    //     })
+                })
+        })
+});
+
+
+
 router.get("/getPosts", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     Post.find()
@@ -130,6 +175,49 @@ router.post("/getPost", (req, res) => {
             if (err) return res.status(400).send(err);
             res.status(200).json({ success: true, post })
         })
+});
+
+
+router.post("/finornot", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+    Post.findOne({ "_id": req.body.postId })
+        .exec((err, post) => {
+            if (err) return res.status(400).send(err);
+            res.status(200).json({ success: true, post })
+        })
+});
+
+
+router.post("/makefin", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+
+    Post.update({ "_id": req.body.postId },{$set : {"fin": 1}}, {upsert: true})
+        .exec((err, post) => {
+            if (err) return res.status(400).send(err);
+            res.status(200).json({ success: true, post })
+        })
+});
+
+router.post("/inProject", (req, res) => {             //메인 화면 모든 포스트 보내기
+    res.header("Access-Control-Allow-Origin", "*");
+    Post.update({ "_id": req.body.postId }, {$inc : {"joinPeople": +1} },  {upsert: true})
+        .exec((err, posts) => {
+            if (err) return res.status(400).send(err);
+            
+            res.status(200).json({ success: true, posts })
+        })
+
+});
+
+router.post("/outProject", (req, res) => {             //메인 화면 모든 포스트 보내기
+    res.header("Access-Control-Allow-Origin", "*");
+    Post.update({ "_id": req.body.postId }, {$inc : {"joinPeople": -1} },  {upsert: true})
+        .exec((err, posts) => {
+            if (err) return res.status(400).send(err);
+            
+            res.status(200).json({ success: true, posts })
+        })
+
 });
 
 

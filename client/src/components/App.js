@@ -14,6 +14,7 @@ import LandingNormalPage from "./views/LandingPage/Category/LandingNormalPage.js
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import AppliedProjectPage from "./views/AppliedProjectPage/AppliedProjectPage.js";
+import CheckApplyPage from "./views/CheckApplyPage/CheckApplyPage.js"
 
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/upload" component={Auth(UploadPage, true)} />
             <Route exact path="/post/:postId" component={Auth(DetailPostPage, null)} />
+            <Route exact path="/applyer/:postId" component={Auth(CheckApplyPage, null)} />
           </div>
           <Route component={Auth(NotFoundPage, null)} />
         </Switch>

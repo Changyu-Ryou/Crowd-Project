@@ -13,6 +13,10 @@ const subscriberSchema = mongoose.Schema({
     postId: {
         type: Schema.Types.ObjectId,
         ref: 'Post'
+    },
+    join: {
+        type: Number,
+        ref: 'JoinProject'
     }
 
 }, { timestamps: true })
