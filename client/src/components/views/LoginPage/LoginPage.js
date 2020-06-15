@@ -131,9 +131,14 @@ function LoginPage(props) {
                   )}
                 </Form.Item>
 
-                {formErrorMessage && (
+                { formErrorMessage ?
+                    <label style={{justifyContent:'center', textAlign:'center', color:'#ff0000bf'}}>Error가 발생했습니다. 수정해주세요</label>
+                    :<label> </label>
+                }
+
+                {/* {formErrorMessage && (
                   <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
-                )}
+                )} */}
 
                 <Form.Item>
                   <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
