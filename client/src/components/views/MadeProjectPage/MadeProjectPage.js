@@ -65,7 +65,7 @@ function MadeProjectPage() {
                     }
                     title={post.title}
                 />
-                <span>{user.userData.name} </span><br />
+                <span>{post.writer.name} </span><br />
 
                 <span style={{ marginLeft: '3rem' }}> {post.views} views</span>
             - <span> {moment(post.createdAt).format("MMM Do YY")} </span><br />

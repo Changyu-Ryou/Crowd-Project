@@ -95,8 +95,8 @@ function RegisterPage(props) {
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`,
             git: values.git,
             intro: addEnter(values.intro),
-            skill: (values.skill && 'C/C++/C# ')+(values.skill1 && 'JAVA ') + (values.skill2 && 'Python ')+(values.skill3 && 'Script ')
-                      +(values.skill4 && '없음')
+            skill: (values.skill ? 'C/C++/C# ' : '')+(values.skill1 ? 'JAVA ':'') + (values.skill2 ? 'Python ':'')+(values.skill3 ? 'Script ':'')
+                      +(values.skill4 ? '':'')
           };
 
           dispatch(registerUser(dataToSubmit)).then(response => {
@@ -199,9 +199,9 @@ function RegisterPage(props) {
                 <Input id="skill" type="checkbox" value={values.skill} onChange={handleChange}
                   onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>C/C++/C# 
                 <Input id="skill1" type="checkbox" value={values.skill1} onChange={handleChange}
-                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>JAVA
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>JAVA<br/>
                 <Input id="skill2" type="checkbox" value={values.skill2} onChange={handleChange}
-                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>Python <br/> 
+                  onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>Python 
                 <Input id="skill3" type="checkbox" value={values.skill3} onChange={handleChange}
                   onBlur={handleBlur} style={{marginLeft:'13px', marginRight:'10px'}}/>Script
                 <Input id="skill4" type="checkbox" value={values.skill4} onChange={handleChange}

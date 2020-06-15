@@ -37,9 +37,6 @@ function LandingWebPage() {
             var peo = 100 / posts.people;
             if (posts.joinPeople) {
                 peo = peo * posts.joinPeople
-            }
-            if (posts.in) {
-                peo = peo * posts.in
             } else {
                 peo = peo * 0
             }
@@ -84,8 +81,8 @@ function LandingWebPage() {
                 />
                 <span>{posts.writer.name} </span><br />
 
-                <span style={{ marginLeft: '3rem' }}> {posts.views} views</span>
-            - <span> {moment(posts.createdAt).format("MMM Do YY")} </span><br />
+                {/* <span style={{ marginLeft: '3rem' }}> {posts.views} views</span> */}
+                <span style={{ marginLeft: '3rem' }}> {moment(posts.createdAt).format("yyyy년 MM월 D일")} </span><br />
 
                 <div style={{ marginTop: '10px', marginLeft: '23px', width: '65%', height: '10px', display: 'inline-block', border: '1px solid gray', borderRadius: '10px 10px', overflow: 'hidden' }}>
                     <div className='bar' name='bar' id="bar" style={{ float: 'left', width: `${person}`, height: '10px', display: 'inline', border: '1px solid gray', borderRadius: '10px 10px', background: 'red' }}></div>
@@ -108,9 +105,6 @@ function LandingWebPage() {
             var peo = 100 / posts.people;
             if (posts.joinPeople) {
                 peo = peo * posts.joinPeople
-            }
-            if (posts.in) {
-                peo = peo * posts.in
             } else {
                 peo = peo * 0
             }
@@ -158,8 +152,8 @@ function LandingWebPage() {
                 />
                 <span>{posts.writer.name} </span><br />
 
-                <span style={{ marginLeft: '3rem' }}> {posts.views} views</span>
-            - <span> {moment(posts.createdAt).format("MMM Do YY")} </span><br />
+                {/* <span style={{ marginLeft: '3rem' }}> {posts.views} views</span> */}
+                <span style={{ marginLeft: '3rem' }}> {moment(posts.createdAt).format("yyyy년 MM월 D일")} </span><br />
 
                 <div style={{ marginTop: '10px', marginLeft: '23px', width: '65%', height: '10px', display: 'inline-block', border: '1px solid gray', borderRadius: '10px 10px', overflow: 'hidden' }}>
                     <div className='bar' name='bar' id="bar" style={{ float: 'left', width: `${person}`, height: '10px', display: 'inline', border: '1px solid gray', borderRadius: '10px 10px', background: 'red' }}></div>
