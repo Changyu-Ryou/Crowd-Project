@@ -14,6 +14,7 @@ import LandingNormalPage from "./views/LandingPage/Category/LandingNormalPage.js
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import AppliedProjectPage from "./views/AppliedProjectPage/AppliedProjectPage.js";
+import MadeProjectPage from "./views/MadeProjectPage/MadeProjectPage.js";
 import CheckApplyPage from "./views/CheckApplyPage/CheckApplyPage.js"
 
 import NavBar from "./views/NavBar/NavBar";
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/normal" component={Auth(LandingNormalPage, null)} />
 
             <Route exact path="/AppliedProjectPage" component={Auth(AppliedProjectPage, true)} />
+            <Route exact path="/MadeProjectPage" component={Auth(MadeProjectPage, true)} />
 
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />

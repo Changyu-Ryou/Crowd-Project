@@ -29,6 +29,10 @@ function LeftMenu(props) {
       <Menu.Item key="applied">
         <a href="/AppliedProjectPage">지원한 프로젝트</a>
       </Menu.Item>
+
+      <Menu.Item key="made">
+        <a href="/MadeProjectPage">내가 만든 프로젝트</a>
+      </Menu.Item>
     </Menu>
   )
 }

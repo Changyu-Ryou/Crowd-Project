@@ -63,6 +63,17 @@ router.post('/uploadPost', (req, res) => {
 
 });
 
+router.post("/getMadePost", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+    Post.find({"writer": req.body.userFrom})
+        .sort({ 'createdAt': -1 })
+        .exec((err, posts) => {
+            if (err) return res.status(400).send(err);
+            res.status(200).json({ success: true, posts })
+        })
+
+});
+
 
 router.post("/getAppliedPost", (req, res) => {
 
