@@ -17,7 +17,7 @@ function CheckApply(props) {
     //console.log(Post);
     let variable = { postId: postId, userTo: localStorage.getItem('userId')}
     useEffect(() => {
-        axios.post('http://localhost:5000/api/subscribe/getApply', variable)
+        axios.post(/*localhost123*/'/api/subscribe/getApply', variable)
             .then(response => {
                 if (response.data.success) {
                     setPost(response.data.posts)
@@ -64,7 +64,7 @@ function CheckApply(props) {
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <Title level={2} > 프로젝트 지원자 목록 </Title> 
-            <List.Item id='like' style={{ justifyContent: 'center' }}
+            <List.Item id='like' style={{ justifyContent: 'center', float:'right' }}
                         actions={[<FinApply postId={postId} />]} />
             <hr />
 

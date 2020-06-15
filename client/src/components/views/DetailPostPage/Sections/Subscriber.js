@@ -19,7 +19,7 @@ function Subscriber(props) {
 
         if(Subscribed) {
             //when we are already subscribed 
-            axios.post('http://localhost:5000/api/subscribe/unSubscribe', subscribeVariables)
+            axios.post(/*localhost123*/'/api/subscribe/unSubscribe', subscribeVariables)
                 .then(response => {
                     if(response.data.success){ 
                         setSubscribeNumber(SubscribeNumber - 1)
@@ -32,7 +32,7 @@ function Subscriber(props) {
         } else {
             // when we are not subscribed yet
             
-            axios.post('http://localhost:5000/api/subscribe/subscribe', subscribeVariables)
+            axios.post(/*localhost123*/'/api/subscribe/subscribe', subscribeVariables)
                 .then(response => {
                     if(response.data.success) {
                         setSubscribeNumber(SubscribeNumber + 1)
@@ -49,7 +49,7 @@ function Subscriber(props) {
     useEffect(() => {
 
         const subscribeNumberVariables = { userTo: userTo, userFrom: userFrom, postId: postId }
-        axios.post('http://localhost:5000/api/subscribe/subscribeNumber', subscribeNumberVariables)
+        axios.post(/*localhost123*/'/api/subscribe/subscribeNumber', subscribeNumberVariables)
             .then(response => {
                 if (response.data.success) {
                     setSubscribeNumber(response.data.subscribeNumber)
@@ -58,7 +58,7 @@ function Subscriber(props) {
                 }
             })
 
-        axios.post('http://localhost:5000/api/subscribe/subscribed', subscribeNumberVariables)
+        axios.post(/*localhost123*/'/api/subscribe/subscribed', subscribeNumberVariables)
             .then(response => {
                 if (response.data.success) {
                     setSubscribed(response.data.subcribed)

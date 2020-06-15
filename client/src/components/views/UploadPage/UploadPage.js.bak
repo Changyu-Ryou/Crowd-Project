@@ -117,7 +117,7 @@ function UploadPage() {
         console.log(files);
 
         Axios
-            .post('http://localhost:5000/api/image/uploadfiles', formData, config)
+            .post(/*localhost123*/'/api/image/uploadfiles', formData, config)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data)
@@ -146,7 +146,7 @@ function UploadPage() {
             if (Description !== "") {
                 if (FilePath !== "") {
                     Axios
-                        .post('http://localhost:5000/api/image/uploadImage', variables)
+                        .post(/*localhost123*/'/api/image/uploadImage', variables)
                         .then(response => {
                             if (response.data.success) {
                                 alert('게시물이 등록되었습니다.');
@@ -239,7 +239,7 @@ function UploadPage() {
                             }}
                             config={{
                                 ckfinder: {
-                                    uploadUrl: 'http://localhost:5000/api/image/uploads'
+                                    uploadUrl: /*localhost123*/'/api/image/uploads'
                                 }
                             }}/> {/*
                         <div>

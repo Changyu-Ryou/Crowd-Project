@@ -23,7 +23,7 @@ function InOrNot(props) {
 
         if (inornotUser == 1) {
             //when we are already subscribed 
-            // axios.post('http://localhost:5000/api/subscribe/unSubscribe', subscribeVariables)
+            // axios.post(/*localhost123*/'/api/subscribe/unSubscribe', subscribeVariables)
             //     .then(response => {
             //         if(response.data.success){ 
             //             setSubscribeNumber(SubscribeNumber - 1)
@@ -32,7 +32,7 @@ function InOrNot(props) {
             //             alert('Failed to unsubscribe')
             //         }
             //     })
-            axios.post('http://localhost:5000/api/subscribe/out', subscribeVariables)
+            axios.post(/*localhost123*/'/api/subscribe/out', subscribeVariables)
                 .then(response => {
                     if (response.data.success) {
                         console.log("data=", response.data);
@@ -42,7 +42,7 @@ function InOrNot(props) {
                         alert('Failed to subscribe')
                     }
                 })
-            axios.post('http://localhost:5000/api/post/outProject', subscribeVariables)
+            axios.post(/*localhost123*/'/api/post/outProject', subscribeVariables)
                 .then(response => {
                     if (response.data.success) {
                         console.log("data=3", response.data);
@@ -56,7 +56,7 @@ function InOrNot(props) {
 
         } else {
             // when we are not subscribed yet
-            axios.post('http://localhost:5000/api/subscribe/in', subscribeVariables)
+            axios.post(/*localhost123*/'/api/subscribe/in', subscribeVariables)
                 .then(response => {
                     if (response.data.success) {
                         //console.log("data2=",response.data);
@@ -69,7 +69,7 @@ function InOrNot(props) {
                     }
                 })
 
-            axios.post('http://localhost:5000/api/post/inProject', subscribeVariables)
+            axios.post(/*localhost123*/'/api/post/inProject', subscribeVariables)
                 .then(response => {
                     if (response.data.success) {
                         console.log("data=3", response.data);
@@ -92,7 +92,7 @@ function InOrNot(props) {
         console.log("fpppppppppornot===" + postFin)
         
         const inornotUserVariables = { userTo: userTo, userFrom: userFrom, postId: postId }     //in 인지 아닌지 판별
-        axios.post('http://localhost:5000/api/subscribe/inornot', inornotUserVariables)
+        axios.post(/*localhost123*/'/api/subscribe/inornot', inornotUserVariables)
             .then(response => {
                 if (response.data.success) {
                     console.log("inornot==>", response.data.inornot[0].join)
@@ -106,7 +106,7 @@ function InOrNot(props) {
                 }
             })
         
-        axios.post('http://localhost:5000/api/post/finornot', inornotUserVariables)
+        axios.post(/*localhost123*/'/api/post/finornot', inornotUserVariables)
             .then(response => {
                 if (response.data.success) {
                     console.log("in??==>", response.data.post.fin)
@@ -124,7 +124,7 @@ function InOrNot(props) {
 
 
 
-        // axios.post('http://localhost:5000/api/subscribe/subscribed', subscribeNumberVariables)
+        // axios.post(/*localhost123*/'/api/subscribe/subscribed', subscribeNumberVariables)
         //     .then(response => {
         //         if (response.data.success) {
         //             setSubscribed(response.data.subcribed)

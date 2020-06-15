@@ -13,7 +13,7 @@ function AppliedProjectPage() {
     let variable = { userFrom: localStorage.getItem('userId') }
 
     useEffect(() => {
-        axios.post('http://localhost:5000/api/post/getAppliedPost', variable)
+        axios.post(/*localhost123*/'/api/post/getAppliedPost', variable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.subscribers)
@@ -29,7 +29,16 @@ function AppliedProjectPage() {
 
     const renderCards = Post.map((post, index) => {
         var finOrNot = post.fin;
-       
+        var sdate = post.startday;
+        var thistime = moment();
+        var cdate = moment(post.startday);//.add(posts.daycount, "days");
+        console.log('cdate=' + cdate + 'sdate=' + sdate + 'thistime=' + thistime + ' 일 차이: ', moment.duration(cdate.diff(thistime)).asDays());
+        console.log(post.title + '시간 차이: ', moment.duration(cdate.diff(thistime)).asHours());
+        var resultDate = moment.duration(cdate.diff(thistime)).asDays();
+
+        if(finOrNot == null && resultDate<0){
+            finOrNot=true;
+        }
         //console.log(Post);
         function getPercent() {
             var peo = 100 / Post.people;
@@ -44,7 +53,7 @@ function AppliedProjectPage() {
         var person = getPercent();
 
         return <Col lg={6} md={8} xs={24} style={{marginBottom:'50px'}}>
-            <a href={`/post/${post._id._id}`}  >
+            <a href={`/post/${post._id}`}  >
                 <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow: 'hidden', border: '1px solid rgba(0,0,0,.2)', borderRadius: '10px 10px' }}>
 
                     {finOrNot

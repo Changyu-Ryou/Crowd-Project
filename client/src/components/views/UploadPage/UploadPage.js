@@ -136,7 +136,7 @@ function UploadPage() {
         if (DocTitle !== "") {
             if (Description !== "") {
                 Axios
-                    .post('http://localhost:5000/api/post/uploadPost', variables)
+                    .post(/*localhost123*/'/api/post/uploadPost', variables)
                     .then(response => {
                         if (response.data.success) {
                             alert('게시물이 등록되었습니다.');
@@ -166,7 +166,7 @@ function UploadPage() {
         console.log('file=',files)
         formData.append("file", files[0])
 
-        Axios.post('http://localhost:5000/api/post/uploadfiles', formData, config)
+        Axios.post(/*localhost123*/'/api/post/uploadfiles', formData, config)
             .then(response => {
                 if (response.data.success) {
 

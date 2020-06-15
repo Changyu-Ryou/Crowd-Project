@@ -28,7 +28,7 @@ function SingleComment(props) {
         }
 
 
-        Axios.post('http://localhost:5000/api/comment/saveComment', variables)
+        Axios.post(/*localhost123*/'/api/comment/saveComment', variables)
             .then(response => {
                 if (response.data.success) {
                     setCommentValue("")

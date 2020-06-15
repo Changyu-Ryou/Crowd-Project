@@ -20,11 +20,9 @@ function LikeDislikes(props) {
     }
 
     
-
-
     useEffect(() => {
 
-        Axios.post('/api/like/getLikes', variable)
+        Axios.post(/*localhost123*/'/api/like/getLikes', variable)
             .then(response => {
                 console.log('getLikes',response.data)
 
@@ -43,7 +41,7 @@ function LikeDislikes(props) {
                 }
             })
 
-        Axios.post('/api/like/getDislikes', variable)
+        Axios.post(/*localhost123*/'/api/like/getDislikes', variable)
             .then(response => {
                 console.log('getDislike',response.data)
                 if (response.data.success) {
@@ -68,7 +66,7 @@ function LikeDislikes(props) {
 
         if (LikeAction === null) {
 
-            Axios.post('/api/like/upLike', variable)
+            Axios.post(/*localhost123*/'/api/like/upLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -91,7 +89,7 @@ function LikeDislikes(props) {
 
         } else {
 
-            Axios.post('/api/like/unLike', variable)
+            Axios.post(/*localhost123*/'/api/like/unLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -112,7 +110,7 @@ function LikeDislikes(props) {
 
         if (DislikeAction !== null) {
 
-            Axios.post('/api/like/unDisLike', variable)
+            Axios.post(/*localhost123*/'/api/like/unDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -126,7 +124,7 @@ function LikeDislikes(props) {
 
         } else {
 
-            Axios.post('/api/like/upDisLike', variable)
+            Axios.post(/*localhost123*/'/api/like/upDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -153,7 +151,7 @@ function LikeDislikes(props) {
     return (
         <React.Fragment>
             
-            <span key="comment-basic-like">
+            {/* <span key="comment-basic-like">
                 <Tooltip title="Like">
                     <icons type="like"
                         theme={LikeAction === 'liked' ? 'filled' : 'outlined'}
@@ -170,7 +168,7 @@ function LikeDislikes(props) {
                     />
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
-            </span>
+            </span> */}
             
         </React.Fragment>
     )

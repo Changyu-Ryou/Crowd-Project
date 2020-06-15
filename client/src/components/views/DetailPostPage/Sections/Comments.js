@@ -23,7 +23,7 @@ function Comments(props) {
             postId: props.postId
         }
 
-        axios.post('/api/comment/saveComment', variables)
+        axios.post(/*localhost123*/'/api/comment/saveComment', variables)
             .then(response => {
                 if (response.data.success) {
                     setComment("")

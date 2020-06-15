@@ -22,7 +22,7 @@ function FinApply(props) {
             setFin(!Fin);
         } else {
             // when we are not subscribed yet
-            axios.post('http://localhost:5000/api/post/makefin', subscribeVariables)
+            axios.post(/*localhost123*/'/api/post/makefin', subscribeVariables)
             .then(response => {
                 if (response.data.success) {
                     //console.log("data2=",response.data);
@@ -46,7 +46,7 @@ function FinApply(props) {
     useEffect(() => {
         
         const inornotUserVariables = { postId: postId }     //in 인지 아닌지 판별
-        axios.post('http://localhost:5000/api/post/finornot', inornotUserVariables)
+        axios.post(/*localhost123*/'/api/post/finornot', inornotUserVariables)
             .then(response => {
                 if (response.data.success) {
                     console.log("inornot==>",response.data.post.fin)

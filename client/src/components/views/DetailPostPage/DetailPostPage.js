@@ -30,7 +30,7 @@ function DetailPostPage(props) {
     }
 
     useEffect(() => {
-        axios.post('http://localhost:5000/api/post/getPost', postVariable)
+        axios.post(/*localhost123*/'/api/post/getPost', postVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.post)
@@ -40,7 +40,7 @@ function DetailPostPage(props) {
                 }
             })
 
-        axios.post('http://localhost:5000/api/comment/getComments', postVariable)
+        axios.post(/*localhost123*/'/api/comment/getComments', postVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log('response.data.comments', response.data.comments)
@@ -134,9 +134,11 @@ function DetailPostPage(props) {
                                 actions={[
                                     // <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
                                     (loginOrNot
-                                        ? (Post.writer._id == localStorage.getItem('userId')
+                                        ? ((finOrNot && (Post.writer._id != localStorage.getItem('userId')))
+                                                            ?  <button>모집이 종료되었습니다.</button> 
+                                                            :(Post.writer._id == localStorage.getItem('userId')
                                             ? <CheckApply userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />
-                                            : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />)
+                                            : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />))
                                         : <button>로그인해주세요</button>)]}
                             />
                         </div>

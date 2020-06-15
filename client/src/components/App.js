@@ -40,7 +40,7 @@ function App() {
             <Route exact path="/game" component={Auth(LandingGamePage, null)} />
             <Route exact path="/normal" component={Auth(LandingNormalPage, null)} />
 
-            <Route exact path="/AppliedProjectPage" component={Auth(AppliedProjectPage, null)} />
+            <Route exact path="/AppliedProjectPage" component={Auth(AppliedProjectPage, true)} />
 
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
