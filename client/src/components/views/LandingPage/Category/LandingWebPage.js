@@ -3,6 +3,7 @@ import { FaCode } from "react-icons/fa";
 import { Card, Avatar, Col, Typography, Row, Button } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
+import {BACK_URL} from '../../../Link';
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -67,10 +68,10 @@ function LandingWebPage() {
                 <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow: 'hidden', border: '1px solid rgba(0,0,0,.2)', borderRadius: '10px 10px' }}>
 
                     {finOrNot
-                        ? <div style={{ width: '100%', height: '150px', background: 'darkgray' }}><img style={{ width: '100%', filter: 'brightness(30%)' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
+                        ? <div style={{ width: '100%', height: '150px', background: 'darkgray' }}><img style={{ width: '100%', filter: 'brightness(30%)' }} alt="thumbnail" src={`${BACK_URL}/${posts.filePath}`} />
                             <p style={{ position: 'absolute', top: "50%", left: '50%', transform: 'translate(-50%,-50%)', fontSize: '22px', color: 'white', textAlign: 'center', fontWeight: '600' }}>마감된<br />프로젝트</p>
                         </div>
-                        : <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />}
+                        : <img style={{ width: '100%' }} alt="thumbnail" src={`${BACK_URL}/${posts.filePath}`} />}
 
 
                 </div><br />
@@ -141,10 +142,10 @@ function LandingWebPage() {
                 <div style={{ position: 'relative', margin: '0px 10px', height: '150px', overflow: 'hidden', border: '1px solid rgba(0,0,0,.2)', borderRadius: '10px 10px' }}>
 
                     {finOrNot
-                        ? <div style={{ width: '100%', height: '150px', background: 'darkgray' }}><img style={{ width: '100%', filter: 'brightness(30%)' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />
+                        ? <div style={{ width: '100%', height: '150px', background: 'darkgray' }}><img style={{ width: '100%', filter: 'brightness(30%)' }} alt="thumbnail" src={`${BACK_URL}/${posts.filePath}`} />
                             <p style={{ position: 'absolute', top: "50%", left: '50%', transform: 'translate(-50%,-50%)', fontSize: '22px', color: 'white', textAlign: 'center', fontWeight: '600' }}>마감된<br />프로젝트</p>
                         </div>
-                        : <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${posts.filePath}`} />}
+                        : <img style={{ width: '100%' }} alt="thumbnail" src={`${BACK_URL}/${posts.filePath}`} />}
 
 
                 </div><br />

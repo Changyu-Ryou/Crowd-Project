@@ -132,7 +132,7 @@ function LoginPage(props) {
                 </Form.Item>
 
                 { formErrorMessage ?
-                    <label style={{justifyContent:'center', textAlign:'center', color:'#ff0000bf'}}>Error가 발생했습니다. 수정해주세요</label>
+                    <label style={{justifyContent:'center', textAlign:'center', color:'#ff0000bf'}}>로그인에 실패했습니다. 다시 시도해주세요</label>
                     :<label> </label>
                 }
 

@@ -22,6 +22,7 @@ import Footer from "./views/Footer/Footer";
 import UploadPage from "./views/UploadPage/UploadPage.js";
 import DetailPostPage from "./views/DetailPostPage/DetailPostPage.js"
 
+//import {BACK_URL } from '../components/Config.js';
 //About User
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 

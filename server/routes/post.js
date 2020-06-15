@@ -85,6 +85,8 @@ router.post("/getAppliedPost", (req, res) => {
         .exec((err, subscribers) => {
             if (err) return res.status(400).send(err);
 
+           
+
             let subscribedUser = [];
 
             subscribers.map((subscriber, i) => {
@@ -93,6 +95,7 @@ router.post("/getAppliedPost", (req, res) => {
 
             let postList = [];
             subscribers.map((subscriber, i) => {
+                console.log("subfind=="+subscriber.postId);
                 postList.push(subscriber.postId)
             })
 

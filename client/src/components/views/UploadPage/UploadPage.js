@@ -3,6 +3,7 @@ import './UploadPage.css'
 import Dropzone from 'react-dropzone';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import {BACK_URL} from '../../Link';
 
 import {
     Typography,
@@ -340,7 +341,7 @@ function UploadPage() {
 
                     {FilePath !== "" &&
                         <div >
-                            <img style={{ marginLeft:'20px', width: '100px', height: 'auto', resize:"both", float:"left"}} src={`http://localhost:5000/${FilePath}`} alt="haha" />
+                            <img style={{ marginLeft:'20px', width: '100px', height: 'auto', resize:"both", float:"left"}} src={`${BACK_URL}/${FilePath}`} alt="haha" />
                         </div>
                     }
                 </div>

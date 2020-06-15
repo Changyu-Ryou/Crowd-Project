@@ -7,8 +7,11 @@ import LikeDislikes from './Sections/LikeDislikes';
 import CheckApply from './Sections/CheckApply';
 import { useSelector } from "react-redux";
 import { urlencoded } from 'body-parser';
+import {BACK_URL} from '../../Link';
+
 function DetailPostPage(props) {
 
+    //'http://34.205.140.57:5000';
 
     const postId = props.match.params.postId
     const [Post, setPost] = useState([])
@@ -57,9 +60,6 @@ function DetailPostPage(props) {
         setCommentLists(CommentLists.concat(newComment))
     }
 
-
-    //   {backgroundImage:`http://localhost:5000/${Video.thumbnail}`}
-
     if (Post.writer) {
 
         var person = getPercent();
@@ -81,12 +81,12 @@ function DetailPostPage(props) {
                 <div id="thumb_main" style={{ position: 'relative', width: '100%', height: '400px', textAlign: 'left', overflow: 'hidden' }}>
                     {finOrNot 
                     ? <div><img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(20%)' }}
-                    src={`http://localhost:5000/${Post.filePath}`} />
+                    src={`${BACK_URL}/${Post.filePath}`} />
                     <p style={{position:'absolute', top:"50%",left:'50%',transform:'translate(-50%,-50%)',fontSize:'22px',color:'white',textAlign:'center',fontWeight:'600'}}>마감된<br/>프로젝트</p>
                     
                     </div>
                     :<img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(60%)' }}
-                        src={`http://localhost:5000/${Post.filePath}`} />}
+                        src={`${BACK_URL}/${Post.filePath}`} />}
                     {/* localhost */}
                     <label id="proj_title">{Post.title}</label>
                 </div>
@@ -95,9 +95,7 @@ function DetailPostPage(props) {
                     <div className="postPage" style={{ width: '100%', padding: '3rem 4em', minHeight: '150px' ,whiteSpace:"normal", wordBreak:'normal'}}>
                         <h2>프로젝트 소개</h2>
                         <div dangerouslySetInnerHTML={{ __html: Post.description }} style={{width:'100%',whiteSpace:"normal", wordBreak:'normal'}}></div>
-                        {/* <p>{Post.description}</p> */}
-                        {/* <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video> */}
-
+                        
                     </div>
                     <div className="commentPage" style={{ width: '100%', padding: '3rem 2em' }}>
                         <Comments CommentLists={CommentLists} postId={Post._id} refreshFunction={updateComment} />

@@ -7,8 +7,9 @@ import {
 } from './types';
 import { BACK_SERVER_URL, headersConfig } from '../components/Config.js';
 
+
 export function registerUser(dataToSubmit) {
-    const request = axios.post(`${BACK_SERVER_URL}/api/users/register`, dataToSubmit)
+    const request = axios.post(`/api/users/register`, dataToSubmit)
         .then(response => response.data);
 
     return {
@@ -18,7 +19,7 @@ export function registerUser(dataToSubmit) {
 }
 
 export function loginUser(dataToSubmit) {
-    const request = axios.post(`${BACK_SERVER_URL}/api/users/login`, dataToSubmit)
+    const request = axios.post(`/api/users/login`, dataToSubmit)
         .then(response => response.data);
 
     return {
@@ -28,7 +29,7 @@ export function loginUser(dataToSubmit) {
 }
 
 export function auth() {
-    const request = axios.get(`${BACK_SERVER_URL}/api/users/auth`, headersConfig)
+    const request = axios.get(`/api/users/auth`, headersConfig)
         .then(response => response.data);
 
     return {
@@ -38,7 +39,7 @@ export function auth() {
 }
 
 export function logoutUser() {
-    const request = axios.get(`${BACK_SERVER_URL}/api/users/logout`, headersConfig)
+    const request = axios.get(`/api/users/logout`, headersConfig)
         .then(response => response.data);
 
     return {
