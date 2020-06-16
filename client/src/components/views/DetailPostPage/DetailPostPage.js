@@ -8,6 +8,7 @@ import CheckApply from './Sections/CheckApply';
 import { useSelector } from "react-redux";
 import { urlencoded } from 'body-parser';
 import {BACK_URL} from '../../Link';
+import moment from 'moment';
 
 function DetailPostPage(props) {
 
@@ -78,9 +79,9 @@ function DetailPostPage(props) {
 
         return (
             <Row>
-                <div id="thumb_main" style={{ position: 'relative', width: '100%', height: '400px', textAlign: 'left', overflow: 'hidden' }}>
+                <div id="thumb_main" style={{ position: 'relative', width: '100%', height: 'auto',maxHeight:'400px', textAlign: 'left', overflow: 'hidden' ,minHeight:'200px'}}>
                     {finOrNot 
-                    ? <div><img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(20%)' }}
+                    ? <div><img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(20%)',maxHeight:'400px' }}
                     src={`${BACK_URL}/${Post.filePath}`} />
                     <p style={{position:'absolute', top:"50%",left:'50%',transform:'translate(-50%,-50%)',fontSize:'22px',color:'white',textAlign:'center',fontWeight:'600'}}>마감된<br/>프로젝트</p>
                     
@@ -88,12 +89,13 @@ function DetailPostPage(props) {
                     :<img style={{ position: 'absolute', height: 'auto', width: "100%", resize: 'both', left: '50%', transform: 'translate(-50%,0)', filter: 'brightness(60%)' }}
                         src={`${BACK_URL}/${Post.filePath}`} />}
                     {/* localhost */}
-                    <label id="proj_title">{Post.title}</label>
+                    <label id="proj_title" style={{textShadow:'0 0 2px #000000'}}>{Post.title}</label>
                 </div>
 
                 <Col lg={18} xs={24}>
-                    <div className="postPage" style={{ width: '100%', padding: '3rem 4em', minHeight: '150px' ,whiteSpace:"normal", wordBreak:'normal'}}>
+                    <div className="postPageDetail" style={{ width: '100%', padding: '3rem 4em', minHeight: '150px' ,whiteSpace:"normal", wordBreak:'normal' , overflow:'auto'}}>
                         <h2>프로젝트 소개</h2>
+                        <hr/>
                         <div dangerouslySetInnerHTML={{ __html: Post.description }} style={{width:'100%',whiteSpace:"normal", wordBreak:'normal'}}></div>
                         
                     </div>
@@ -102,11 +104,11 @@ function DetailPostPage(props) {
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>
-                    <div className="postPage" style={{ width: '100%', height: '300px', padding: '3rem 0rem', textAlign: 'center', alignItems: 'center' }}>
+                    <div className="postPage" style={{ width: '100%', height: '330px', padding: '3rem 0rem', textAlign: 'center', alignItems: 'center' }}>
 
                         <div style={{
-                            position: 'absolute', height: '300px', width: '80%', left: '50%',
-                            transform: 'translate(-50%,0)', border: '1px solid white', borderRadius: '20px 20px', marginBottom: "30px", background: 'orange'
+                            position: 'absolute', height: '330px', width: '80%', left: '50%',
+                            transform: 'translate(-50%,0)', border: '1px solid white', borderRadius: '20px 20px', marginBottom: "30px", background: '#BEF0FF'
                         }}>
                             <h2 style={{ marginTop: '30px' }}>제안자</h2>
                             <Avatar src={Post.writer && Post.writer.image} />
@@ -128,7 +130,8 @@ function DetailPostPage(props) {
                         </div>
                         <span> {Post.joinPeople ? Post.joinPeople : `0`}/{Post.people ? (Post.people + `명`) : `∞명`}</span><br /><br />
                         <div style={{width:'100%', height:'auto', textAlign:'center'}}>
-                            <List.Item id='like' style={{justifyContent:'center'}}
+                    <div style={{textAlign:'center'}}>프로젝트 예상 시작일<br/><b>{moment(Post.startday).format("yyyy년 MM월 D일")}</b><br/>에상 소요일   <b>{Post.daycount}</b> 일</div>
+                            <List.Item id='like' style={{ width:'100%', justifyContent:'center'}}
                                 actions={[
                                     // <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')} />, 
                                     (loginOrNot
@@ -137,7 +140,7 @@ function DetailPostPage(props) {
                                                             :(Post.writer._id == localStorage.getItem('userId')
                                             ? <CheckApply userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />
                                             : <Subscriber userTo={Post.writer._id} userFrom={localStorage.getItem('userId')} postId={postId} />))
-                                        : <button>로그인해주세요</button>)]}
+                                        : <a href='/login' style={{color:'black'}}><button>로그인해주세요</button></a>)]}
                             />
                         </div>
 

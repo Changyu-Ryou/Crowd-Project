@@ -168,17 +168,34 @@ function LandingNormalPage() {
     })
 
 
-    return (<div style={{width:'100%', overflow:'hidden'}}>
-        <img id='landingImg' src="https://cdn.wadiz.kr/ft/images/green001/2020/0605/20200605142924749_2233.jpg/wadiz/optimize/" ></img>
-        <div id='renderZone'style={{ width: '85%', margin: '3rem auto' }}>
+    return (<div style={{ width: '100%', overflow: 'hidden' }}>
+        <section id='mainsection' style={{ backgroundImage: `url(${image})`, padding: '60px 0px', textAlign: 'center', height: '280px' }}><a href="/upload">
+            <h1 style={{ color: 'white', fontSize: '26px', margin: '0px' }}><b>개매칭</b>에서 프로젝트 오픈하기</h1>
+            <p style={{ color: 'white', fontSize: '15px' }}>당신의 아이디어를 소개하고 개발팀을 꾸려보세요</p>
+            <Button id="landingBtn" style={{ backgroundColor: '#00c4c4', color: 'white', height: '56px', fontSize: '21px', padding: '0 32px', border: '0px solid white', borderRadius: '5px 5px' }}>바로가기&nbsp;<i aria-hidden="true"></i></Button>
+        </a>
+        </section>
+       
+        <div id='renderZone' style={{ width: '85%', margin: '3rem auto' }}>
 
-            <a href='/'><button>전체보기</button></a>
-            <a href='/web'><button>웹 App</button></a>
-            <a href='/android'><button>Android</button></a>
-            <a href='/ios'><button>ios</button></a>
-            <a href='/mfc'><button>MFC</button></a>
-            <a href='/game'><button>Game</button></a>
-            <a href='/normal'><button>일반/기타</button></a>
+            <div style={{textAlign:'center', width:'100%'}}>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/'><img src='https://is1-ssl.mzstatic.com/image/thumb/Purple113/v4/4b/bc/29/4bbc29f9-6e2e-568f-982d-d99f36107417/source/256x256bb.jpg' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>전체보기</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/web'><img src='https://t1.daumcdn.net/cfile/tistory/21568A4656865D4D17' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>웹 App</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/android'><img src='https://seeklogo.com/images/A/android-new-2019-logo-3CD3BC571C-seeklogo.com.png' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>android</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/ios'><img src='https://i.dlpng.com/static/png/6980727_preview.png' 
+            style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>ios</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/mfc'><img src='https://3.bp.blogspot.com/-aV62l1gf1ew/XEcLcXE1JlI/AAAAAAAAANw/mxQ7mTFe6mcHY2vWLcNfzmYRhPAX7wZAACLcBGAs/s1600/MFC.png' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>MFC</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/game'><img src='https://static.wadiz.kr/assets/reward-category/reward_banner_thumb/reward_banner_thumb_292.jpg' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>Game</p></a></div>
+            <div style={{display:'inline-block', marginRight:'20px'}}><a href='/normal'><img src='https://t1.daumcdn.net/cfile/tistory/244B894852A2F38428' style={{border:'1px solid white', borderRadius:'50%', width:'54px',height:'54px'}}></img>
+            <br/><p style={{textAlign:'center',color:'rgba(0,0,0,.84)'}}>일반/기타</p></a></div>
+            </div>
+            
 
             <Title level={2} style={{marginTop:'2rem'}}> 일반/기타 프로젝트 </Title>
             <hr />
@@ -191,14 +208,11 @@ function LandingNormalPage() {
             <Title level={4} style={{marginTop:'2rem'}}> 마감 </Title>
             <Row gutter={16}>{renderCards2}</Row>
             <hr />
+
+            <img id='landingImg' style={{filter:'brightness(100%)'}} src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/competition-imgs/2020-DM-FE-01/fe_dm-prgm-img_banner.png" ></img>
         </div>
-        <section style={{backgroundImage: `url(${image})`, padding:'60px 0px', textAlign:'center', height:'280px'}}><a href="/upload">
-            <h1 style={{color:'white', fontSize:'32px', margin:'0px'}}>소개매칭에서 프로젝트 오픈하기</h1>
-            <p style={{color:'white', fontSize:'15px'}}>당신의 아이디어를 소개하고 개발팀을 꾸려보세요</p>
-            <Button style={{backgroundColor:'#00c4c4', color:'white',height:'56px', fontSize:'21px',padding:'0 32px', border:'0px solid white', borderRadius:'5px 5px'}}>바로가기&nbsp;<i aria-hidden="true"></i></Button>
-        </a>
-        </section>
-        </div>
+        
+    </div>
     )
 }
 

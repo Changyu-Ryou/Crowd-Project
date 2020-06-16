@@ -108,11 +108,12 @@ pre {
 }
 
 @media(max-width: 768px){
+
   #proj_title{
     position: absolute;
     color: black;
-    font-size: 30px;
-    margin-left: 50px;
+    font-size: 23px;
+    margin-left: 20px;
   }
 
   #like {
@@ -132,8 +133,8 @@ pre {
   }
 
   #renderZone{
-    width: 85%;
-    margin: 1.5rem auto !important;
+    width: 90% !important;
+    margin: 1.2rem auto !important;
   }
 
   #landingImg{
@@ -147,4 +148,20 @@ pre {
     filter:brightness(70%);
     
   }
+  #mainsection{
+    padding:40px 0 !important;
+    height: 200px !important;
+    width: 100%;
+  }
+
+  #landingBtn {
+    height: 40px !important;
+    margin-top: 5px;
+  }
+
+  .postPageDetail {
+    padding: 2rem 1rem !important;
+
+  }
+
 }
